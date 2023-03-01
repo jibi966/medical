@@ -7,18 +7,28 @@ import app2 from '../sources/app2.jpg';
 export const Footer = () => {
     return (
         <Box p={5} sx={{backgroundColor: '#0b111e'}} display="flex" justifyContent="space-between">
-            <Box>
-
-                <Typography variant="h3" align="center" color="white">About Amie
+            <Box width={400}>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <Typography variant="h4" align="center" color="white">we would love to walk with you holding
+                    hands, caring with love and cherishing it.
                 </Typography>
-                <ul>
-                    <li>
-                        <Typography variant="h5" align="center" color="white">Together In your journey
-                        </Typography>
-                    </li>
-                </ul>
+                <br/>
+                <Typography variant="h4" align="center" color="white"> Your Friend, Your Amie
+                </Typography>
             </Box>
             <Box>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
                 <img src={logo} height="250px"/>
             </Box>
 
