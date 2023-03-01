@@ -12,7 +12,10 @@ import {
     FormControl,
     MenuItem,
     Select,
-    TextField
+    TextField, Card,
+    CardContent,
+    CardMedia,
+    IconButton,
 } from '@mui/material';
 import {useNavigate} from 'react-router-dom';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -32,6 +35,10 @@ import Image1 from '../sources/one.JPG';
 import Image2 from '../sources/two.JPG';
 import Image3 from '../sources/three.JPG';
 import Image4 from '../sources/four.JPG';
+
+import v1 from '../sources/ex1.mp4';
+import v2 from '../sources/ex2.mp4';
+import v3 from '../sources/ex3.mp4';
 import Image5 from '../sources/PHOTO-2023-02-28-00-38-14.jpg';
 import Image6 from '../sources/PHOTO-2023-02-28-00-38-15.jpg';
 import Image7 from '../sources/PHOTO-2023-02-28-00-38-20.jpg';
@@ -48,6 +55,9 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DoneIcon from '@mui/icons-material/Done';
 import styles from './home.module.css';
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import SkipNextIcon from '@mui/icons-material/SkipNext';
 import {Footer} from './Footer'; // Import CSS module styles
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -195,9 +205,9 @@ function Home() {
                     <img src={Image1}/>
                 </div>
                 <div>
-                    <Typography>Some details</Typography>
-                    <Typography>Some details</Typography>
-                    <Typography>Some details</Typography>
+                    {/*<Typography>Some details</Typography>*/}
+                    {/*<Typography>Some details</Typography>*/}
+                    {/*<Typography>Some details</Typography>*/}
                 </div>
             </Box>
             <Box>
@@ -284,7 +294,7 @@ function Home() {
 
                 </DialogActions>
             </Dialog>
-            <Carousel autoPlay={true} interval={2000} infiniteLoop={true}>
+            <Carousel autoPlay={true} interval={6000} infiniteLoop={true}>
                 <div>
                     <img src={Image5}/>
                     <p className="legend">Start Your Journey With Us</p>
@@ -308,6 +318,80 @@ function Home() {
                 </div>
 
             </Carousel>
+            <Card sx={{display: 'flex', justifyContent: 'center', p: 2, backgroundColor: 'pink', pb: 5}}>
+                <Box sx={{display: 'flex', flexDirection: 'column'}}>
+                    <CardContent sx={{flex: '1 0 auto'}}>
+                        <Typography component="div" variant="h2">
+                            Daily Exercises
+                        </Typography>
+                    </CardContent>
+                    <Box sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexDirection: 'column',
+                        gap: 2
+                    }}>
+                        <Accordion sx={{width: '100%'}} expanded={expanded === 'panel5'}
+                                   onChange={handleChangeAcc('panel5')}>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon/>}
+                                aria-controls="panel3bh-content"
+                                id="panel13bh-header"
+                            >
+                                <Typography sx={{width: '33%', flexShrink: 0}}>
+                                    Exercises 1
+                                </Typography>
+
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <video controls autoPlay={true} muted playsInline width="100%" height="100%">
+                                    <source src={v1} type="video/mp4"/>
+                                    Your browser does not support HTML5 video.
+                                </video>
+                            </AccordionDetails>
+                        </Accordion>
+                        <Accordion sx={{width: '100%'}} expanded={expanded === 'panel6'}
+                                   onChange={handleChangeAcc('panel6')}>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon/>}
+                                aria-controls="panel3bh-content"
+                                id="panel9bh-header"
+                            >
+                                <Typography sx={{width: '33%', flexShrink: 0}}>
+                                    Exercises 2
+                                </Typography>
+
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <video width="100%" height="100%" controls autoPlay={true} muted playsInline>
+                                    <source src={v2} type="video/mp4"/>
+                                    Your browser does not support HTML5 video.
+                                </video>
+                            </AccordionDetails>
+                        </Accordion>
+                        <Accordion sx={{width: '100%'}} expanded={expanded === 'panel7'}
+                                   onChange={handleChangeAcc('panel7')}>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon/>}
+                                aria-controls="panel3bh-content"
+                                id="panel7bh-header"
+                            >
+                                <Typography sx={{width: '33%', flexShrink: 0}}>
+                                    Exercises 3
+                                </Typography>
+
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <video width="100%" height="100%" controls autoPlay={true} muted playsInline>
+                                    <source src={v3} type="video/mp4"/>
+                                    Your browser does not support HTML5 video.
+                                </video>
+                            </AccordionDetails>
+                        </Accordion>
+                    </Box>
+                </Box>
+            </Card>
             <Footer/>
         </Box>
     );
