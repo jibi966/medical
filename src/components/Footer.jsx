@@ -16,22 +16,6 @@ export const Footer = () => {
                         <Typography variant="h5" align="center" color="white">Together In your journey
                         </Typography>
                     </li>
-                    <li>
-                        <Typography variant="h5" align="center" color="white">About Us
-                        </Typography>
-                    </li>
-                    <li>
-                        <Typography variant="h5" align="center" color="white">About Us
-                        </Typography>
-                    </li>
-                    <li>
-                        <Typography variant="h5" align="center" color="white">About Us
-                        </Typography>
-                    </li>
-                    <li>
-                        <Typography variant="h5" align="center" color="white">About Us
-                        </Typography>
-                    </li>
                 </ul>
             </Box>
             <Box>
