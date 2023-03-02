@@ -32,6 +32,9 @@ import MuiAlert from '@mui/material/Alert';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import {Carousel} from 'react-responsive-carousel';
 import Image1 from '../sources/one.JPG';
+import {styled} from '@mui/material/styles';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
 import Image2 from '../sources/two.JPG';
 import Image3 from '../sources/three.JPG';
 import Image4 from '../sources/four.JPG';
@@ -75,6 +78,7 @@ function Home() {
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [tips, openTips] = useState(false);
     const [expanded, setExpanded] = React.useState(false);
+    const [dcOrCus, setDcOrCus] = useState(false);
 
     const handleChangeAcc = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
@@ -105,8 +109,63 @@ function Home() {
         localStorage.removeItem('login');
         navigate('/');
         window.location.reload();
-
     };
+
+    const IOSSwitch = styled((props) => (
+        <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
+    ))(({theme}) => ({
+        width: 42,
+        height: 26,
+        padding: 0,
+        '& .MuiSwitch-switchBase': {
+            padding: 0,
+            margin: 2,
+            transitionDuration: '300ms',
+            '&.Mui-checked': {
+                transform: 'translateX(16px)',
+                color: '#fff',
+                '& + .MuiSwitch-track': {
+                    backgroundColor: theme.palette.mode === 'dark' ? '#2ECA45' : '#65C466',
+                    opacity: 1,
+                    border: 0,
+                },
+                '&.Mui-disabled + .MuiSwitch-track': {
+                    opacity: 0.5,
+                },
+            },
+            '&.Mui-focusVisible .MuiSwitch-thumb': {
+                color: '#33cf4d',
+                border: '6px solid #fff',
+            },
+            '&.Mui-disabled .MuiSwitch-thumb': {
+                color:
+                    theme.palette.mode === 'light'
+                        ? theme.palette.grey[100]
+                        : theme.palette.grey[600],
+            },
+            '&.Mui-disabled + .MuiSwitch-track': {
+                opacity: theme.palette.mode === 'light' ? 0.7 : 0.3,
+            },
+        },
+        '& .MuiSwitch-thumb': {
+            boxSizing: 'border-box',
+            width: 22,
+            height: 22,
+        },
+        '& .MuiSwitch-track': {
+            borderRadius: 26 / 2,
+            backgroundColor: theme.palette.mode === 'light' ? '#E9E9EA' : '#39393D',
+            opacity: 1,
+            transition: theme.transitions.create(['background-color'], {
+                duration: 500,
+            }),
+        },
+    }));
+
+    const handleApp = (e) => {
+        setDcOrCus(e.target.checked);
+    };
+
     return (
         <Box sx={{flexGrow: 1}}>
 
@@ -114,20 +173,26 @@ function Home() {
                 <DialogTitle>Add Appointment</DialogTitle>
                 <DialogContent>
                     <Box display="flex" flexDirection="column" gap={1} justifyContent="center">
-                        <DialogContentText>Select Your Preferred Doctor</DialogContentText>
+                        <DialogContentText>Select Doctor or Counsellor</DialogContentText>
+                        <FormControlLabel
+                            control={<IOSSwitch sx={{m: 1}} checked={dcOrCus} onChange={handleApp}/>}
+                            label={dcOrCus ? 'Consulting Doctor' : 'Consulting Counsellor'}
+                        />
+                        <br/>
+                        <DialogContentText>{dcOrCus ? 'Choose Your Doctor' : 'Choose Your Counsellor'}</DialogContentText>
                         <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label">Doctor</InputLabel>
+                            <InputLabel id="demo-simple-select-label">{dcOrCus ? 'Doctor' : 'Counsellor'}</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 value={doctor}
-                                label="Doctor"
+                                label={dcOrCus ? 'Doctor' : 'Counsellor'}
                                 onChange={handleChange}
                             >
-                                <MenuItem value="Sharul">Sharul</MenuItem>
-                                <MenuItem value="Abi">Abi</MenuItem>
-                                <MenuItem value="Neethu">Neethu</MenuItem>
-                                <MenuItem value="Arun">Arun</MenuItem>
+                                <MenuItem value="Sharul">{dcOrCus ? 'Dr. Jenisha' : 'Jenisha'}</MenuItem>
+                                <MenuItem value="Abi">{dcOrCus ? 'Dr. Ishika' : 'Ishika'}</MenuItem>
+                                <MenuItem value="Neethu">{dcOrCus ? 'Dr. Deepa' : 'Deepa'}</MenuItem>
+                                <MenuItem value="Arun">{dcOrCus ? 'Dr. Spoorthi' : 'Spoorthi'}</MenuItem>
                             </Select>
                         </FormControl>
                         <br/>
